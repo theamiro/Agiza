@@ -37,7 +37,7 @@ struct SettingsView: View {
 //                    })
                 Section(header: Text("Display"), footer: Text("System settings will override Dark mode settings and use the current device theme").font(.system(size: 12)).foregroundColor(.gray).italic()) {
                     Toggle(isOn: $darkModeEnabled, label: {
-                        Text("Dark Mode")
+                        Text("Dark Mode").foregroundColor(useSystemSettings ? .gray : .primary)
                     }).onChange(of: darkModeEnabled, perform: { _ in
                         SystemThemeManager.shared.handleTheme(darkMode: darkModeEnabled, system: useSystemSettings)
                     }).disabled(useSystemSettings)
@@ -72,7 +72,7 @@ struct SettingsView: View {
                 }.font(.system(size: 14, weight: .semibold)).foregroundColor(.secondary)
                 Section(footer: VStack (alignment: .leading, spacing: 5) {
                             Text("Proverbs 29:2").fontWeight(.semibold)
-                            Text("When the righteous thrive, the people rejoice; when the wicked rule, the people groan.")}) {}
+                            Text("When the righteous are in authority, the people rejoice: but when the wicked beareth rule, the people mourn. (KJV)")}) {}
             }
             .navigationTitle("Settings")
         }

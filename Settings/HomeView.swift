@@ -18,12 +18,16 @@ struct HomeView: View {
                 Image(systemName: "newspaper")
                 Text("Articles")
             }
+            SearchView().tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Search")
+            }
             PoliticiansListView().tabItem {
-                Image(systemName: "person.3.fill")
+                Image(systemName: "person.3")
                 Text("Politicians")
             }
             SettingsView(darkModeEnabled: $darkModeEnabled, useSystemSettings: $useSystemSettings, enableNotifications: $enableNotifications).tabItem {
-                Image(systemName: "gearshape.fill")
+                Image(systemName: "gearshape")
                 Text("Settings")
             }
         }).onAppear{
