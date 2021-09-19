@@ -24,9 +24,12 @@ struct ArticleContent: View {
                 }.foregroundColor(.gray)
                 Text(article.content).fontWeight(.regular).multilineTextAlignment(.leading)
                 Link(destination: URL(string: article.link)!) {
+                    Text("Other sources").font(.system(size: 14)).italic()
+                }.padding(.vertical)
+                Link(destination: URL(string: article.link)!) {
                     Text("Read the original Article").font(.system(size: 14)).italic()
                 }.padding(.vertical)
-                Text("Pictures courtesy. We do not keep any record of images, audio, video, or any othe graphic content for our own use. All rights reserved ").font(.footnote)
+                Text("Pictures courtesy. We do not keep any record of images, audio, video, or any othe graphic content for our own use. All rights reserved.").font(.footnote)
                     .fontWeight(.light)
             }.padding([.horizontal])
         }

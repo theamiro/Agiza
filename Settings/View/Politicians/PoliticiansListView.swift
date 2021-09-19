@@ -9,7 +9,10 @@ import SwiftUI
 
 struct PoliticiansListView: View {
     var body: some View {
-        Text("Placeholder")
+        NavigationView {
+            Text("Placeholder")
+                .navigationTitle("Politicians")
+        }
     }
 }
 

@@ -19,6 +19,7 @@ struct ArticleListView: View {
                         })
                 }
             }
+            .listStyle(DefaultListStyle())
             .navigationTitle("Articles")
         }
     }

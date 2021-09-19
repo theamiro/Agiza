@@ -17,7 +17,9 @@ struct SettingsView: View {
     var githubLink: URL = URL(string: "https://github.com/theamiro")!
     
     @State private var previewIndex = 0
+    @State private var themeIndex = 0
     var previewOptions = ["Always", "When Unlocked", "Never"]
+    var themeOptions = [Color.blue, Color.green, Color.pink]
     
     var body: some View {
         NavigationView {
@@ -36,6 +38,13 @@ struct SettingsView: View {
 //                        }.padding(.vertical, 5.0)
 //                    })
                 Section(header: Text("Display"), footer: Text("System settings will override Dark mode settings and use the current device theme").font(.system(size: 12)).foregroundColor(.gray).italic()) {
+                    Picker(selection: $themeIndex, label: Text("Theme")) {
+                        ForEach(0 ..< themeOptions.count) {
+                            RoundedRectangle(cornerRadius: 4, style: .continuous)
+                                .fill(self.themeOptions[$0])
+                                .frame(width: 20, height: 20)
+                        }
+                    }
                     Toggle(isOn: $darkModeEnabled, label: {
                         Text("Dark Mode").foregroundColor(useSystemSettings ? .gray : .primary)
                     }).onChange(of: darkModeEnabled, perform: { _ in
@@ -57,19 +66,19 @@ struct SettingsView: View {
                         }
                     }
                 }
-                Section {
+                Section (header: Text("Contribute")) {
                     Link(destination: twitterLink, label: {
                         Label("Follow me on Twitter @theamiro", systemImage: "link")
-                    })
+                    }).font(.system(size: 14, weight: .semibold)).foregroundColor(.blue)
                     Link(destination: githubLink, label: {
                         Label("Contribute to this project on Github", systemImage: "arrow.triangle.branch")
-                    })
-                }.font(.system(size: 14, weight: .semibold)).foregroundColor(.blue)
-                Section {
+                    }).font(.system(size: 14, weight: .semibold)).foregroundColor(.blue)
+                }
+                Section (header: Text("Donate")) {
                     Link(destination: twitterLink, label: {
                             Label("Buy me a coffee", systemImage: "heart.fill")
-                    })
-                }.font(.system(size: 14, weight: .semibold)).foregroundColor(.secondary)
+                    }).font(.system(size: 14, weight: .semibold)).foregroundColor(.secondary)
+                }
                 Section(footer: VStack (alignment: .leading, spacing: 5) {
                             Text("Proverbs 29:2").fontWeight(.semibold)
                             Text("When the righteous are in authority, the people rejoice: but when the wicked beareth rule, the people mourn. (KJV)")}) {}
